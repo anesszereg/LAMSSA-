@@ -1,7 +1,9 @@
 import { withAuth } from "next-auth/middleware";
+import type { NextRequestWithAuth } from "next-auth/middleware";
 import { NextResponse } from "next/server";
+import type { NextRequest, NextFetchEvent } from "next/server";
 
-export default withAuth(
+const authMiddleware = withAuth(
   function middleware(req) {
     const token = req.nextauth.token;
     if (req.nextUrl.pathname.startsWith("/admin") && token?.role !== "admin") {
@@ -20,6 +22,10 @@ export default withAuth(
     },
   }
 );
+
+export function proxy(req: NextRequest, event: NextFetchEvent) {
+  return authMiddleware(req as NextRequestWithAuth, event);
+}
 
 export const config = {
   matcher: ["/admin/:path*", "/account/:path*"],

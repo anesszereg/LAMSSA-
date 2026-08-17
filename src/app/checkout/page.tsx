@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import { useCartStore } from "@/stores/cart";
 import { products } from "@/lib/data";
@@ -11,21 +12,21 @@ import { toast } from "sonner";
 
 export default function CheckoutPage() {
   const { items } = useCartStore();
-  const [step, setStep] = useState(1);
+  const searchParams = useSearchParams();
+  const [step, setStep] = useState(() =>
+    searchParams.get("success") === "true" ? 3 : 1
+  );
   const [processing, setProcessing] = useState(false);
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
-    const params = new URLSearchParams(window.location.search);
-    if (params.get("success") === "true") {
-      const orderId = params.get("orderId");
+    if (searchParams.get("success") === "true") {
+      const orderId = searchParams.get("orderId");
       if (orderId) {
         fetch(`/api/orders/${orderId}/pay`, { method: "POST" }).catch(() => {});
       }
-      setStep(3);
       toast.success("Order placed successfully.");
     }
-  }, []);
+  }, [searchParams]);
 
   const cartProducts = items
     .map((item) => {
@@ -56,8 +57,9 @@ export default function CheckoutPage() {
       } else {
         throw new Error(data.error || "Unable to start checkout");
       }
-    } catch (err: any) {
-      toast.error(err.message || "Checkout failed");
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : "Checkout failed";
+      toast.error(message);
       setProcessing(false);
     }
   };
@@ -115,6 +117,7 @@ export default function CheckoutPage() {
                               src={product.thumbnail}
                               alt={product.name}
                               fill
+                              sizes="80px"
                               className="object-cover"
                             />
                           </div>
@@ -217,7 +220,7 @@ export default function CheckoutPage() {
               <div className="mt-6 space-y-3 text-foreground/80">
                 <div className="flex justify-between">
                   <span>Subtotal</span>
-                  <span>{formatPrice(subtotal, "USD")}</span>
+                  <span>{formatPrice(subtotal, "DZD")}</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Shipping</span>
@@ -231,7 +234,7 @@ export default function CheckoutPage() {
               <div className="my-6 border-t border-[#E8E0D5] dark:border-white/10" />
               <div className="flex justify-between text-xl font-medium">
                 <span>Total</span>
-                <span>{formatPrice(subtotal, "USD")}</span>
+                <span>{formatPrice(subtotal, "DZD")}</span>
               </div>
             </div>
           </ScrollReveal>

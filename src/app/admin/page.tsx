@@ -1,6 +1,5 @@
 "use client";
 
-import { useMemo } from "react";
 import {
   Bar,
   BarChart,
@@ -14,10 +13,14 @@ import {
   ShoppingBag,
   Users,
   Calendar,
+  ArrowUpRight,
+  ArrowDownRight,
 } from "lucide-react";
-import { ScrollReveal } from "@/components/luxury/ScrollReveal";
+import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
+import { AdminCard } from "@/components/admin/AdminCard";
+import { StatusBadge } from "@/components/admin/StatusBadge";
 
-const data = [
+const revenueData = [
   { month: "Jan", revenue: 42000 },
   { month: "Feb", revenue: 38000 },
   { month: "Mar", revenue: 56000 },
@@ -28,15 +31,39 @@ const data = [
 ];
 
 const stats = [
-  { label: "Total Revenue", value: "$401,000", change: "+12%", icon: DollarSign },
-  { label: "Orders", value: "86", change: "+5%", icon: ShoppingBag },
-  { label: "Customers", value: "342", change: "+8%", icon: Users },
-  { label: "Bookings", value: "24", change: "+18%", icon: Calendar },
+  {
+    label: "Total Revenue",
+    value: "401,000 DA",
+    change: "+12%",
+    changeType: "up" as const,
+    icon: DollarSign,
+  },
+  {
+    label: "Orders",
+    value: "86",
+    change: "+5%",
+    changeType: "up" as const,
+    icon: ShoppingBag,
+  },
+  {
+    label: "Customers",
+    value: "342",
+    change: "+8%",
+    changeType: "up" as const,
+    icon: Users,
+  },
+  {
+    label: "Bookings",
+    value: "24",
+    change: "+18%",
+    changeType: "up" as const,
+    icon: Calendar,
+  },
 ];
 
 const recentOrders = [
   { id: "#ADL-9832", customer: "Elena Marchetti", total: "$12,400", status: "Delivered" },
-  { id: "#ADL-9831", customer: "Thomas Whitfield", total: "$28,900", status: "In Production" },
+  { id: "#ADL-9831", customer: "Thomas Whitfield", total: "$28,900", status: "Processing" },
   { id: "#ADL-9830", customer: "Sarah Okonjo", total: "$8,200", status: "Shipped" },
   { id: "#ADL-9829", customer: "Marco Rossi", total: "$45,600", status: "Pending" },
 ];
@@ -44,36 +71,51 @@ const recentOrders = [
 export default function AdminDashboardPage() {
   return (
     <div className="space-y-8">
-      <ScrollReveal>
-        <h2 className="font-serif text-3xl font-light">Overview</h2>
-      </ScrollReveal>
+      <AdminPageHeader
+        title="Overview"
+        subtitle="Here is what is happening across your showroom today."
+      />
 
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-        {stats.map((stat) => (
-          <ScrollReveal key={stat.label} delay={0.05}>
-            <div className="rounded-2xl bg-white p-6 shadow-sm dark:bg-[#2C2A26]">
-              <div className="flex items-center justify-between">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#E8E0D5]/30">
-                  <stat.icon className="h-5 w-5 text-[#8B6F4E]" />
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {stats.map((stat) => {
+          const Icon = stat.icon;
+          const ChangeIcon = stat.changeType === "up" ? ArrowUpRight : ArrowDownRight;
+          return (
+            <AdminCard key={stat.label} className="flex flex-col">
+              <div className="flex items-start justify-between">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#E8E0D5]/30 dark:bg-white/5">
+                  <Icon className="h-5 w-5 text-[#8B6F4E]" />
                 </div>
-                <span className="text-xs font-medium text-emerald-600 dark:text-emerald-400">
+                <div className="flex items-center gap-0.5 text-xs font-medium text-emerald-600 dark:text-emerald-400">
+                  <ChangeIcon className="h-3.5 w-3.5" />
                   {stat.change}
-                </span>
+                </div>
               </div>
               <p className="mt-4 font-serif text-3xl font-light">{stat.value}</p>
-              <p className="text-sm text-foreground/60">{stat.label}</p>
-            </div>
-          </ScrollReveal>
-        ))}
+              <p className="text-sm text-foreground/50">{stat.label}</p>
+            </AdminCard>
+          );
+        })}
       </div>
 
-      <ScrollReveal delay={0.2}>
-        <div className="rounded-2xl bg-white p-8 shadow-sm dark:bg-[#2C2A26]">
-          <h3 className="mb-6 font-serif text-xl font-medium">Revenue</h3>
+      <div className="grid gap-6 lg:grid-cols-3">
+        <AdminCard className="lg:col-span-2">
+          <div className="mb-6 flex items-center justify-between">
+            <div>
+              <h3 className="font-serif text-xl font-medium">Revenue</h3>
+              <p className="text-sm text-foreground/50">Monthly revenue this year</p>
+            </div>
+          </div>
           <div className="h-[300px] w-full">
             <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={data}>
-                <XAxis dataKey="month" stroke="#888" fontSize={12} tickLine={false} axisLine={false} />
+              <BarChart data={revenueData}>
+                <XAxis
+                  dataKey="month"
+                  stroke="#888"
+                  fontSize={12}
+                  tickLine={false}
+                  axisLine={false}
+                />
                 <YAxis
                   stroke="#888"
                   fontSize={12}
@@ -82,6 +124,7 @@ export default function AdminDashboardPage() {
                   tickFormatter={(value) => `$${value / 1000}k`}
                 />
                 <Tooltip
+                  cursor={{ fill: "rgba(139, 111, 78, 0.05)" }}
                   contentStyle={{
                     background: "rgba(255,255,255,0.95)",
                     borderRadius: "12px",
@@ -92,43 +135,30 @@ export default function AdminDashboardPage() {
               </BarChart>
             </ResponsiveContainer>
           </div>
-        </div>
-      </ScrollReveal>
+        </AdminCard>
 
-      <ScrollReveal delay={0.3}>
-        <div className="rounded-2xl bg-white p-8 shadow-sm dark:bg-[#2C2A26]">
-          <h3 className="mb-6 font-serif text-xl font-medium">Recent Orders</h3>
-          <div className="overflow-x-auto">
-            <table className="w-full text-left text-sm">
-              <thead>
-                <tr className="border-b border-[#E8E0D5] dark:border-white/10">
-                  <th className="pb-3 font-medium text-foreground/60">Order</th>
-                  <th className="pb-3 font-medium text-foreground/60">Customer</th>
-                  <th className="pb-3 font-medium text-foreground/60">Total</th>
-                  <th className="pb-3 font-medium text-foreground/60">Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                {recentOrders.map((order) => (
-                  <tr
-                    key={order.id}
-                    className="border-b border-[#E8E0D5]/60 dark:border-white/5"
-                  >
-                    <td className="py-4 font-medium">{order.id}</td>
-                    <td className="py-4">{order.customer}</td>
-                    <td className="py-4">{order.total}</td>
-                    <td className="py-4">
-                      <span className="rounded-full bg-[#E8E0D5]/30 px-3 py-1 text-xs dark:bg-white/10">
-                        {order.status}
-                      </span>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+        <AdminCard>
+          <h3 className="font-serif text-xl font-medium">Recent Orders</h3>
+          <p className="text-sm text-foreground/50">Latest transactions</p>
+          <div className="mt-6 space-y-5">
+            {recentOrders.map((order) => (
+              <div
+                key={order.id}
+                className="flex items-center justify-between border-b border-[#E8E0D5]/30 pb-4 last:border-0 last:pb-0 dark:border-white/5"
+              >
+                <div>
+                  <p className="font-medium">{order.id}</p>
+                  <p className="text-xs text-foreground/50">{order.customer}</p>
+                </div>
+                <div className="text-right">
+                  <p className="text-sm font-medium">{order.total}</p>
+                  <StatusBadge status={order.status} />
+                </div>
+              </div>
+            ))}
           </div>
-        </div>
-      </ScrollReveal>
+        </AdminCard>
+      </div>
     </div>
   );
 }

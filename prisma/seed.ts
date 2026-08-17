@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { Prisma, PrismaClient } from "@prisma/client";
 import { collections, products } from "../src/lib/data";
 
 const prisma = new PrismaClient();
@@ -18,11 +18,11 @@ async function main() {
         currency: collection.currency,
         dimensions: collection.dimensions,
         materials: collection.materials,
-        colorPalette: collection.colorPalette as any,
+        colorPalette: collection.colorPalette as Prisma.InputJsonValue,
         gallery: collection.gallery,
       },
       create: {
-        id: (collection as any).id,
+        id: collection.id,
         slug: collection.slug,
         name: collection.name,
         roomType: collection.roomType,
@@ -34,7 +34,7 @@ async function main() {
         currency: collection.currency,
         dimensions: collection.dimensions,
         materials: collection.materials,
-        colorPalette: collection.colorPalette as any,
+        colorPalette: collection.colorPalette as Prisma.InputJsonValue,
         gallery: collection.gallery,
       },
     });
@@ -60,7 +60,7 @@ async function main() {
         materials: product.materials,
         images: product.images,
         thumbnail: product.thumbnail,
-        specifications: product.specifications as any,
+        specifications: product.specifications as Prisma.InputJsonValue,
         isBestseller: product.isBestseller,
         isNew: product.isNew,
         collectionId: collection?.id ?? null,
@@ -79,7 +79,7 @@ async function main() {
         materials: product.materials,
         images: product.images,
         thumbnail: product.thumbnail,
-        specifications: product.specifications as any,
+        specifications: product.specifications as Prisma.InputJsonValue,
         isBestseller: product.isBestseller,
         isNew: product.isNew,
         collectionId: collection?.id ?? null,

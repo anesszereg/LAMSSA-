@@ -2,20 +2,39 @@ import { NextRequest, NextResponse } from "next/server";
 import { products as mockProducts } from "@/lib/data";
 import { stripe, isStripeEnabled } from "@/lib/stripe";
 import { prisma } from "@/lib/prisma";
+import type Stripe from "stripe";
 
 const dbConfigured = !!process.env.DATABASE_URL;
 
+interface CheckoutItem {
+  productId: string;
+  quantity: number;
+  finish?: string;
+  color?: string;
+}
+
+interface CheckoutProduct {
+  id: string;
+  name: string;
+  price: number;
+  currency: string;
+  thumbnail: string;
+  shortDescription: string;
+}
+
 export async function POST(req: NextRequest) {
   try {
-    const { items } = await req.json();
+    const { items }: { items: CheckoutItem[] } = await req.json();
 
-    const products = dbConfigured
+    const productCatalog = dbConfigured
       ? await prisma.product.findMany({ include: { finishes: true, colors: true } })
       : mockProducts;
 
+    const products = productCatalog as unknown as CheckoutProduct[];
+
     const lineItems = items
-      .map((item: { productId: string; quantity: number; finish?: string; color?: string }) => {
-        const product = products.find((p: any) => p.id === item.productId);
+      .map((item) => {
+        const product = products.find((p) => p.id === item.productId);
         if (!product) return null;
         return {
           price_data: {
@@ -36,12 +55,12 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "No valid items" }, { status: 400 });
     }
 
-    const total = items.reduce((sum: number, item: any) => {
-      const product = products.find((p: any) => p.id === item.productId);
+    const total = items.reduce((sum, item) => {
+      const product = products.find((p) => p.id === item.productId);
       return sum + (product?.price || 0) * (item.quantity || 1);
     }, 0);
 
-    const currency = products.find((p: any) => p.id === items[0].productId)?.currency || "USD";
+    const currency = products.find((p) => p.id === items[0].productId)?.currency || "DZD";
 
     let orderId: string | null = null;
     if (dbConfigured) {
@@ -50,8 +69,8 @@ export async function POST(req: NextRequest) {
           total,
           currency,
           items: {
-            create: items.map((item: any) => {
-              const product = products.find((p: any) => p.id === item.productId);
+            create: items.map((item) => {
+              const product = products.find((p) => p.id === item.productId);
               return {
                 quantity: item.quantity,
                 price: product?.price || 0,
@@ -73,7 +92,7 @@ export async function POST(req: NextRequest) {
     if (isStripeEnabled() && stripe) {
       const session = await stripe.checkout.sessions.create({
         mode: "payment",
-        line_items: lineItems as any,
+        line_items: lineItems as Stripe.Checkout.SessionCreateParams.LineItem[],
         success_url: successUrl,
         cancel_url: `${process.env.NEXTAUTH_URL || "http://localhost:3000"}/cart`,
         shipping_address_collection: {
@@ -86,10 +105,8 @@ export async function POST(req: NextRequest) {
 
     // Fallback when Stripe keys are not configured
     return NextResponse.json({ url: successUrl });
-  } catch (error: any) {
-    return NextResponse.json(
-      { error: error?.message || "Unable to create checkout session" },
-      { status: 500 }
-    );
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : "Unable to create checkout session";
+    return NextResponse.json({ error: message }, { status: 500 });
   }
 }

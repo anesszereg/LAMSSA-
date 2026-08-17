@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useRef, useState, useMemo } from "react";
+import { Suspense, useRef, useMemo } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import {
   OrbitControls,
@@ -85,11 +85,9 @@ function FurniturePlaceholder({
 
 function Hotspot({
   position,
-  label,
   onClick,
 }: {
   position: [number, number, number];
-  label: string;
   onClick: () => void;
 }) {
   const ref = useRef<THREE.Group>(null);
@@ -113,12 +111,10 @@ function Hotspot({
 }
 
 function Scene({
-  collection,
   hotspots,
   onSelectProduct,
   selectedProductId,
 }: {
-  collection: Collection;
   hotspots: HotspotData[];
   onSelectProduct: (product: Product) => void;
   selectedProductId: string | null;
@@ -151,7 +147,7 @@ function Scene({
         intensity={lighting === "night" ? 1.5 : 0.3}
         color="#C9A86C"
       />
-      <Environment preset={envFile as any} />
+      <Environment preset={envFile as "night" | "studio"} />
       <Wall color={wallColor} />
       <Floor material={flooring} />
       {hotspots.map((h, i) => (
@@ -164,7 +160,6 @@ function Scene({
           />
           <Hotspot
             position={[h.position[0], h.position[1] + 0.6, h.position[2]]}
-            label={h.product.name}
             onClick={() => onSelectProduct(h.product)}
           />
         </group>
@@ -203,10 +198,12 @@ export function RoomViewer({
 
   return (
     <div ref={containerRef} className="relative h-[60vh] w-full overflow-hidden rounded-3xl bg-[#F5F0E8] md:h-[75vh]">
-      <Canvas shadows gl={{ antialias: true, alpha: true }}>
+      <Canvas
+        shadows={{ type: THREE.PCFShadowMap }}
+        gl={{ antialias: true, alpha: true }}
+      >
         <Suspense fallback={null}>
           <Scene
-            collection={collection}
             hotspots={hotspots}
             onSelectProduct={onSelectProduct}
             selectedProductId={selectedProductId}

@@ -30,7 +30,8 @@ export default function HomePage() {
       >
         <motion.div style={{ y: heroY }} className="absolute inset-0">
           <Image
-            src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=2400&q=80"
+            src="https://images.unsplash.com/photo-1564078516393-cf04bd966897?auto=format&fit=crop&w=2400&q=80"
+            loading="eager"
             alt="Luxury interior living room"
             fill
             priority
@@ -173,7 +174,7 @@ export default function HomePage() {
       <section className="relative overflow-hidden py-32">
         <div className="absolute inset-0">
           <Image
-            src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2400&q=80"
+            src="https://images.unsplash.com/photo-1581784878214-8d5596b98a01?auto=format&fit=crop&w=2400&q=80"
             alt="Luxury interior"
             fill
             className="object-cover"

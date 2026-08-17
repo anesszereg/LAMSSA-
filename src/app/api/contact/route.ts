@@ -24,7 +24,7 @@ export async function POST(req: NextRequest) {
     console.log("Contact form submission:", result.data);
 
     return NextResponse.json({ success: true });
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       { error: "Unable to process your message" },
       { status: 500 }

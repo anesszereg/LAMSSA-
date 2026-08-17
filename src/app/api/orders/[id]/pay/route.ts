@@ -20,10 +20,8 @@ export async function POST(
     });
 
     return NextResponse.json({ success: true });
-  } catch (error: any) {
-    return NextResponse.json(
-      { error: error?.message || "Unable to update order" },
-      { status: 500 }
-    );
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : "Unable to update order";
+    return NextResponse.json({ error: message }, { status: 500 });
   }
 }

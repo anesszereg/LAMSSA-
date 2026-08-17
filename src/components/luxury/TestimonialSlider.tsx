@@ -39,6 +39,7 @@ export function TestimonialSlider({ testimonials }: TestimonialSliderProps) {
                   src={testimonials[index].image}
                   alt={testimonials[index].author}
                   fill
+                  sizes="64px"
                   className="object-cover"
                 />
               </div>

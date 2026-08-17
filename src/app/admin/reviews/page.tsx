@@ -1,3 +1,7 @@
+import { Star } from "lucide-react";
+import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
+import { AdminCard } from "@/components/admin/AdminCard";
+
 const reviews = [
   { product: "Aria Platform Bed", author: "Elena M.", rating: 5, text: "Absolutely stunning craftsmanship." },
   { product: "Atlas Sectional Sofa", author: "Thomas W.", rating: 5, text: "The comfort is extraordinary." },
@@ -6,18 +10,27 @@ const reviews = [
 
 export default function AdminReviewsPage() {
   return (
-    <div className="space-y-8">
-      <h2 className="font-serif text-3xl font-light">Reviews</h2>
-      <div className="grid gap-6">
+    <div className="space-y-6">
+      <AdminPageHeader
+        title="Reviews"
+        subtitle="Customer feedback on products"
+      />
+
+      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
         {reviews.map((review, i) => (
-          <div key={i} className="rounded-2xl bg-white p-6 shadow-sm dark:bg-[#2C2A26]">
+          <AdminCard key={i} className="flex flex-col">
             <div className="flex items-center justify-between">
               <p className="font-medium">{review.product}</p>
-              <span className="text-sm text-[#C9A86C]">{"★".repeat(review.rating)}</span>
+              <div className="flex items-center gap-1 text-[#C9A86C]">
+                <Star className="h-3.5 w-3.5 fill-current" />
+                <span className="text-sm font-medium">{review.rating}</span>
+              </div>
             </div>
-            <p className="mt-2 text-sm text-foreground/70">{review.text}</p>
-            <p className="mt-3 text-xs text-foreground/50">By {review.author}</p>
-          </div>
+            <p className="mt-3 flex-1 text-sm leading-relaxed text-foreground/70">
+              “{review.text}”
+            </p>
+            <p className="mt-4 text-xs text-foreground/50">By {review.author}</p>
+          </AdminCard>
         ))}
       </div>
     </div>

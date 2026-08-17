@@ -39,7 +39,6 @@ const wallOptions = [
 
 export function ExperienceClient({ collection }: { collection: Collection }) {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
-  const [isFullscreen, setIsFullscreen] = useState(false);
 
   const {
     wallColor,
@@ -71,10 +70,8 @@ export function ExperienceClient({ collection }: { collection: Collection }) {
   const toggleFullscreen = () => {
     if (!document.fullscreenElement) {
       document.documentElement.requestFullscreen().catch(() => {});
-      setIsFullscreen(true);
     } else {
       document.exitFullscreen().catch(() => {});
-      setIsFullscreen(false);
     }
   };
 
@@ -256,6 +253,7 @@ export function ExperienceClient({ collection }: { collection: Collection }) {
                   src={selectedProduct.thumbnail}
                   alt={selectedProduct.name}
                   fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
                   className="object-cover"
                 />
               </div>

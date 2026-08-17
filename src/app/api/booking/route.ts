@@ -27,7 +27,7 @@ export async function POST(req: NextRequest) {
     console.log("Booking request:", result.data);
 
     return NextResponse.json({ success: true, bookingId: "BK-" + Date.now() });
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       { error: "Unable to process your booking" },
       { status: 500 }

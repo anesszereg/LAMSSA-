@@ -43,7 +43,7 @@ export default function AboutPage() {
           <ScrollReveal delay={0.15}>
             <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem]">
               <Image
-                src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80"
+                src="https://images.unsplash.com/photo-1581784878214-8d5596b98a01?auto=format&fit=crop&w=1600&q=80"
                 alt="Adlane atelier interior"
                 fill
                 className="object-cover"

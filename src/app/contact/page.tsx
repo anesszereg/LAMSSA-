@@ -38,7 +38,7 @@ export default function ContactPage() {
               Contact
             </p>
             <h1 className="editorial-heading font-serif text-5xl font-light md:text-6xl">
-              Let's create
+              Let&rsquo;s create
               <br />
               something lasting.
             </h1>

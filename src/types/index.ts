@@ -96,7 +96,19 @@ export interface Booking {
   email: string;
   phone?: string;
   notes?: string;
-  status: 'pending' | 'confirmed' | 'cancelled';
+  status: 'pending' | 'confirmed' | 'cancelled' | 'completed';
+}
+
+export interface Order {
+  id: string;
+  status: string;
+  total: number;
+  currency: string;
+  customer?: string;
+  userEmail?: string;
+  date?: string;
+  createdAt?: string;
+  items?: { productId: string; quantity: number; price: number }[];
 }
 
 export interface Hotspot {

@@ -2,13 +2,12 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Minus, Plus, Trash2, X, ShoppingBag } from "lucide-react";
+import { Minus, Plus, Trash2, ShoppingBag } from "lucide-react";
 import { useUIStore } from "@/stores/ui";
 import { useCartStore } from "@/stores/cart";
 import { products } from "@/lib/data";
 import { formatPrice } from "@/lib/utils";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetFooter } from "@/components/ui/sheet";
-import { Button } from "@/components/ui/button";
 
 export function CartDrawer() {
   const { cartOpen, setCartOpen } = useUIStore();
@@ -62,6 +61,7 @@ export function CartDrawer() {
                           src={product.thumbnail}
                           alt={product.name}
                           fill
+                          sizes="80px"
                           className="object-cover"
                         />
                       </div>
@@ -125,7 +125,7 @@ export function CartDrawer() {
                 <div className="flex items-center justify-between text-lg">
                   <span className="text-foreground/60">Subtotal</span>
                   <span className="font-serif font-medium">
-                    {formatPrice(subtotal, "USD")}
+                    {formatPrice(subtotal, "DZD")}
                   </span>
                 </div>
                 <Link

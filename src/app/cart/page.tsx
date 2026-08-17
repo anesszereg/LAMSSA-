@@ -57,6 +57,7 @@ export default function CartPage() {
                           src={product.thumbnail}
                           alt={product.name}
                           fill
+                          sizes="80px"
                           className="object-cover"
                         />
                       </div>
@@ -118,7 +119,7 @@ export default function CartPage() {
                 <div className="mt-6 space-y-3 text-foreground/70">
                   <div className="flex justify-between">
                     <span>Subtotal</span>
-                    <span>{formatPrice(subtotal, "USD")}</span>
+                    <span>{formatPrice(subtotal, "DZD")}</span>
                   </div>
                   <div className="flex justify-between">
                     <span>Shipping</span>
@@ -132,7 +133,7 @@ export default function CartPage() {
                 <div className="my-6 border-t border-[#E8E0D5] dark:border-white/10" />
                 <div className="flex justify-between text-xl font-medium">
                   <span>Estimated Total</span>
-                  <span>{formatPrice(subtotal, "USD")}</span>
+                  <span>{formatPrice(subtotal, "DZD")}</span>
                 </div>
                 <MagneticButton
                   href="/checkout"
