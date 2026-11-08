@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/admin", "/account", "/api"],
     },
-    sitemap: "https://adlane.com/sitemap.xml",
+    sitemap: "https://lamsa.com/sitemap.xml",
   };
 }

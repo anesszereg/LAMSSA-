@@ -18,7 +18,7 @@ export async function POST() {
   }
 
   const timestamp = Math.round(new Date().getTime() / 1000);
-  const folder = "adlane/media";
+  const folder = "lamsa/media";
 
   const signature = cloudinary.utils.api_sign_request(
     { timestamp, folder },

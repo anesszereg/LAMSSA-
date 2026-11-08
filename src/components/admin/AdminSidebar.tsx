@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
+import { Logo } from "@/components/ui/Logo";
 import { SignOutButton } from "./SignOutButton";
 
 const groups = [
@@ -115,8 +116,8 @@ export function AdminSidebar({
   const SidebarContent = (
     <>
       <div className="flex h-20 items-center border-b border-white/10 px-6">
-        <Link href="/admin" className="font-serif text-2xl font-medium text-white">
-          Adlane
+        <Link href="/admin" className="text-white">
+          <Logo showMark />
         </Link>
       </div>
       <NavLinks onClick={() => setMobileOpen(false)} />

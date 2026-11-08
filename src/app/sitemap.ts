@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 import { collections } from "@/lib/data";
 
-const baseUrl = "https://adlane.com";
+const baseUrl = "https://lamsa.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [

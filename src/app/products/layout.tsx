@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Shop | Adlane Luxury Interiors",
+  title: "Shop | Lamsa Luxury Interiors",
   description: "Explore individually curated luxury furniture, lighting and décor pieces.",
 };
 

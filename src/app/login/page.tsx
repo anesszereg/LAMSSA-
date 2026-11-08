@@ -3,7 +3,7 @@ import { Suspense } from "react";
 import { LoginForm } from "./LoginForm";
 
 export const metadata: Metadata = {
-  title: "Sign In | Adlane Luxury Interiors",
+  title: "Sign In | Lamsa Luxury Interiors",
   description: "Sign in to access your account, wishlist and saved designs.",
 };
 
@@ -21,7 +21,7 @@ export default function LoginPage() {
           <LoginForm />
         </Suspense>
         <div className="mt-6 text-center text-xs text-foreground/50">
-          Demo accounts: admin@adlane.com / admin123 or user@adlane.com / user123
+          Demo accounts: admin@lamsa.com / admin123 or user@lamsa.com / user123
         </div>
       </div>
     </div>

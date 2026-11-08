@@ -3,6 +3,49 @@ import type { Testimonial, Project } from "@/types";
 
 const unsplash = (id: string) => `https://images.unsplash.com/${id}?auto=format&fit=crop&w=1600&q=80`;
 
+const room1Images = [
+  "/room-1/DSC07330.jpg",
+  "/room-1/DSC07332.jpg",
+  "/room-1/DSC07334.jpg",
+  "/room-1/DSC07335.jpg",
+  "/room-1/DSC07337.jpg",
+  "/room-1/DSC07342.jpg",
+  "/room-1/DSC07344.jpg",
+  "/room-1/DSC07357.jpg",
+  "/room-1/DSC07358.jpg",
+  "/room-1/DSC07359.jpg",
+  "/room-1/DSC07362.jpg",
+  "/room-1/DSC07366.jpg",
+  "/room-1/DSC07367.jpg",
+  "/room-1/DSC07370.jpg",
+];
+
+const room2Images = [
+  "/room-2/DSC07406.jpg",
+  "/room-2/DSC07410.jpg",
+  "/room-2/DSC07413.jpg",
+  "/room-2/DSC07415.jpg",
+  "/room-2/DSC07416.jpg",
+  "/room-2/DSC07422.jpg",
+  "/room-2/DSC07424.jpg",
+  "/room-2/DSC07429.jpg",
+  "/room-2/DSC07432.jpg",
+];
+
+const room3Images = [
+  "/room-3/DSC07372.jpg",
+  "/room-3/DSC07374.jpg",
+  "/room-3/DSC07379.jpg",
+  "/room-3/DSC07380.jpg",
+  "/room-3/DSC07384.jpg",
+  "/room-3/DSC07389.jpg",
+  "/room-3/DSC07390.jpg",
+  "/room-3/DSC07391.jpg",
+  "/room-3/DSC07392.jpg",
+  "/room-3/DSC07393.jpg",
+  "/room-3/DSC07399.jpg",
+];
+
 export const collections: Collection[] = [
   {
     id: "c1",
@@ -10,13 +53,10 @@ export const collections: Collection[] = [
     name: "Serenity Suite",
     tagline: "A sanctuary of calm where light, texture and silence converge.",
     roomType: "Master Bedroom",
-    heroImage: unsplash("photo-1562438668-bcf0ca6578f0"),
-    gallery: [
-      unsplash("photo-1562438668-bcf0ca6578f0"),
-      unsplash("photo-1599696848652-f0ff23bc911f"),
-      unsplash("photo-1578683010236-d716f9a3f461"),
-      unsplash("photo-1581784878214-8d5596b98a01"),
-    ],
+    heroImage: room1Images[0],
+    gallery: room1Images,
+    tourUrl: "https://mls.kuu.la/share/L86hw?fs=1&vr=1&zoom=1&thumbs=1&inst=fr",
+    videoUrl: "/videos/room1-web.mp4",
     story:
       "Inspired by the quiet grandeur of a private villa on the Amalfi coast, Serenity Suite is designed as a complete sensorial retreat. Every textile, surface and proportion has been considered to slow time and deepen rest.",
     designerNotes:
@@ -39,14 +79,11 @@ export const collections: Collection[] = [
     slug: "metropolitan-loft",
     name: "Metropolitan Loft",
     tagline: "Urban sophistication carved in stone, steel and velvet.",
-    roomType: "Living Room",
-    heroImage: unsplash("photo-1564078516393-cf04bd966897"),
-    gallery: [
-      unsplash("photo-1564078516393-cf04bd966897"),
-      unsplash("photo-1613545325278-f24b0cae1224"),
-      unsplash("photo-1518733057094-95b53143d2a7"),
-      unsplash("photo-1493663284031-b7e3aefcae8e"),
-    ],
+    roomType: "Master Bedroom",
+    heroImage: room2Images[0],
+    gallery: room2Images,
+    tourUrl: "https://mls.kuu.la/share/L8xzV?fs=1&vr=1&zoom=1&thumbs=1&inst=fr",
+    videoUrl: "/videos/room2-web.mp4",
     story:
       "The Metropolitan Loft collection captures the duality of modern city living: monumental comfort and refined minimalism. Designed for double-height apartments and curated gallery walls.",
     designerNotes:
@@ -69,14 +106,11 @@ export const collections: Collection[] = [
     slug: "villa-verde-dining",
     name: "Villa Verde Dining",
     tagline: "Convivial elegance for long evenings and lingering conversations.",
-    roomType: "Dining Room",
-    heroImage: unsplash("photo-1581783458534-001a466b5487"),
-    gallery: [
-      unsplash("photo-1581783458534-001a466b5487"),
-      unsplash("photo-1600210491892-03d54c0aaf87"),
-      unsplash("photo-1621293954908-907159247fc8"),
-      unsplash("photo-1576698483491-8c43f0862543"),
-    ],
+    roomType: "Master Bedroom",
+    heroImage: room3Images[0],
+    gallery: room3Images,
+    tourUrl: "https://mls.kuu.la/share/L8xsg?fs=1&vr=1&zoom=1&thumbs=1&inst=fr",
+    videoUrl: "/videos/room3-web.mp4",
     story:
       "Villa Verde reimagines the formal dining room as a warm, sculptural stage. Curves replace corners; the table becomes both monument and gathering place.",
     designerNotes:
@@ -96,365 +130,7 @@ export const collections: Collection[] = [
   },
 ];
 
-const finishes = [
-  { id: "f1", name: "Brushed Oak", hex: "#C9B8A5", priceAdjustment: 0 },
-  { id: "f2", name: "Smoked Oak", hex: "#5C4A3A", priceAdjustment: 1200 },
-  { id: "f3", name: "Natural Walnut", hex: "#7A6652", priceAdjustment: 1800 },
-  { id: "f4", name: "Bronze", hex: "#8B6F4E", priceAdjustment: 2400 },
-];
-
-const colors = [
-  { id: "c1", name: "Alabaster", hex: "#FAFAF8", priceAdjustment: 0 },
-  { id: "c2", name: "Travertine", hex: "#E8E0D5", priceAdjustment: 0 },
-  { id: "c3", name: "Charcoal", hex: "#2C2A26", priceAdjustment: 0 },
-  { id: "c4", name: "Olive", hex: "#7A7B67", priceAdjustment: 0 },
-];
-
-export const products: Product[] = [
-  {
-    id: "p1",
-    slug: "aria-platform-bed",
-    name: "Aria Platform Bed",
-    category: "Beds",
-    collectionSlug: "serenity-suite",
-    price: 18900,
-    currency: "DZD",
-    thumbnail: unsplash("photo-1562438668-bcf0ca6578f0"),
-    images: [
-      unsplash("photo-1562438668-bcf0ca6578f0"),
-      unsplash("photo-1599696848652-f0ff23bc911f"),
-      unsplash("photo-1578683010236-d716f9a3f461"),
-    ],
-    shortDescription: "A low-profile platform bed wrapped in hand-tufted raw silk.",
-    description:
-      "The Aria Platform Bed is conceived as a horizontal volume that floats above the floor on a recessed bronze plinth. Upholstered in hand-tufted raw silk with generous proportions, it brings hotel-suite presence to the private bedroom.",
-    specifications: {
-      Frame: "Solid oak with bronze base",
-      Upholstery: "Raw silk / Linen optional",
-      "Headboard height": "110 cm",
-      Mattress: "King / California King compatible",
-      Origin: "Made in Italy",
-    },
-    dimensions: { width: 220, height: 110, depth: 240, unit: "cm" },
-    materials: ["Oak", "Bronze", "Raw Silk", "Latex foam"],
-    finishes,
-    colors,
-    inStock: true,
-    sku: "ARIA-BED-001",
-    rating: 4.9,
-    reviewCount: 24,
-    isBestseller: true,
-  },
-  {
-    id: "p2",
-    slug: "luna-nightstands-pair",
-    name: "Luna Nightstands — Pair",
-    category: "Storage",
-    collectionSlug: "serenity-suite",
-    price: 4600,
-    currency: "DZD",
-    thumbnail: unsplash("photo-1599696848652-f0ff23bc911f"),
-    images: [unsplash("photo-1599696848652-f0ff23bc911f"), unsplash("photo-1562438668-bcf0ca6578f0")],
-    shortDescription: "Sculptural bedside tables with soft-close drawers and stone tops.",
-    description:
-      "The Luna nightstand pairs a monolithic oak body with a honed statuario marble top. Finger-pull drawers open silently on soft-close runners.",
-    specifications: {
-      Body: "Solid oak",
-      Top: "Honed Statuario marble",
-      Drawers: "2 soft-close drawers",
-      Origin: "Made in Italy",
-    },
-    dimensions: { width: 55, height: 52, depth: 45, unit: "cm" },
-    materials: ["Oak", "Marble", "Brass hardware"],
-    finishes,
-    colors,
-    inStock: true,
-    sku: "LUNA-NS-002",
-    rating: 4.8,
-    reviewCount: 18,
-  },
-  {
-    id: "p3",
-    slug: "atlas-sectional-sofa",
-    name: "Atlas Sectional Sofa",
-    category: "Seating",
-    collectionSlug: "metropolitan-loft",
-    price: 28400,
-    currency: "DZD",
-    thumbnail: unsplash("photo-1564078516393-cf04bd966897"),
-    images: [
-      unsplash("photo-1564078516393-cf04bd966897"),
-      unsplash("photo-1613545325278-f24b0cae1224"),
-      unsplash("photo-1518733057094-95b53143d2a7"),
-    ],
-    shortDescription: "A monumental modular sectional upholstered in mohair velvet.",
-    description:
-      "Atlas is designed for generous urban spaces. Its deep seat and low back create a continuous horizon of comfort, while powder-coated steel feet keep the volume visually light.",
-    specifications: {
-      Frame: "Solid hardwood and steel",
-      Upholstery: "Mohair velvet / Leather optional",
-      Configuration: "Modular L-shape",
-      Seating: "Down-wrapped foam",
-      Origin: "Made in Italy",
-    },
-    dimensions: { width: 380, height: 72, depth: 180, unit: "cm" },
-    materials: ["Steel", "Hardwood", "Mohair velvet", "Down foam"],
-    finishes,
-    colors,
-    inStock: true,
-    sku: "ATLAS-SFA-003",
-    rating: 5,
-    reviewCount: 31,
-    isBestseller: true,
-    isNew: true,
-  },
-  {
-    id: "p4",
-    slug: "monolith-coffee-table",
-    name: "Monolith Coffee Table",
-    category: "Tables",
-    collectionSlug: "metropolitan-loft",
-    price: 8900,
-    currency: "DZD",
-    thumbnail: unsplash("photo-1613545325278-f24b0cae1224"),
-    images: [unsplash("photo-1613545325278-f24b0cae1224"), unsplash("photo-1581784878214-8d5596b98a01")],
-    shortDescription: "Single-block Nero Marquina marble coffee table.",
-    description:
-      "Carved from a single block of Nero Marquina marble, Monolith appears as a dark mirror floating above the floor. Each piece is unique in veining and presence.",
-    specifications: {
-      Material: "Solid Nero Marquina marble",
-      Finish: "Honed",
-      Weight: "Approx. 180 kg",
-      Origin: "Made in Italy",
-    },
-    dimensions: { width: 140, height: 38, depth: 80, unit: "cm" },
-    materials: ["Marble"],
-    finishes: [finishes[0], finishes[1]],
-    colors: [colors[2]],
-    inStock: true,
-    sku: "MONO-CT-004",
-    rating: 4.9,
-    reviewCount: 14,
-  },
-  {
-    id: "p5",
-    slug: "terra-dining-table",
-    name: "Terra Dining Table",
-    category: "Dining Tables",
-    collectionSlug: "villa-verde-dining",
-    price: 22400,
-    currency: "DZD",
-    thumbnail: unsplash("photo-1581783458534-001a466b5487"),
-    images: [
-      unsplash("photo-1581783458534-001a466b5487"),
-      unsplash("photo-1600210491892-03d54c0aaf87"),
-      unsplash("photo-1621293954908-907159247fc8"),
-    ],
-    shortDescription: "Elliptical travertine table for ten.",
-    description:
-      "Terra's elliptical top is cut from a single slab of Roman travertine and supported by two carved pedestals. Seats ten in sculptural comfort.",
-    specifications: {
-      Top: "Roman travertine",
-      Base: "Travertine monoliths",
-      Seats: "10",
-      Origin: "Made in Italy",
-    },
-    dimensions: { width: 280, height: 75, depth: 120, unit: "cm" },
-    materials: ["Travertine"],
-    finishes: [finishes[0]],
-    colors: [colors[0], colors[1]],
-    inStock: true,
-    sku: "TERRA-DT-005",
-    rating: 5,
-    reviewCount: 9,
-    isNew: true,
-  },
-  {
-    id: "p6",
-    slug: "sella-dining-chairs-set",
-    name: "Sella Dining Chairs — Set of 6",
-    category: "Chairs",
-    collectionSlug: "villa-verde-dining",
-    price: 9600,
-    currency: "DZD",
-    thumbnail: unsplash("photo-1576698483491-8c43f0862543"),
-    images: [unsplash("photo-1576698483491-8c43f0862543"), unsplash("photo-1621293954908-907159247fc8")],
-    shortDescription: "Low-backed leather chairs on solid walnut frames.",
-    description:
-      "Sella chairs feature a continuous leather sling seat supported by a hand-shaped walnut frame. The low back encourages open conversation across the table.",
-    specifications: {
-      Frame: "Solid walnut",
-      Seat: "Vegetable-tanned leather",
-      Quantity: "Set of 6",
-      Origin: "Made in Italy",
-    },
-    dimensions: { width: 52, height: 78, depth: 58, unit: "cm" },
-    materials: ["Walnut", "Leather"],
-    finishes: [finishes[2], finishes[3]],
-    colors: [colors[2], colors[3]],
-    inStock: true,
-    sku: "SELLA-CH-006",
-    rating: 4.8,
-    reviewCount: 11,
-  },
-  {
-    id: "p7",
-    slug: "cloud-chandelier",
-    name: "Cloud Chandelier",
-    category: "Lighting",
-    collectionSlug: "villa-verde-dining",
-    price: 12800,
-    currency: "DZD",
-    thumbnail: unsplash("photo-1581784878214-8d5596b98a01"),
-    images: [unsplash("photo-1581784878214-8d5596b98a01"), unsplash("photo-1518733057094-95b53143d2a7")],
-    shortDescription: "Hand-blown glass chandelier with bronze canopy.",
-    description:
-      "A cluster of hand-blown glass spheres arranged like a cumulus cloud. Dimmable LED filaments provide a warm, atmospheric glow over dining tables.",
-    specifications: {
-      Glass: "Hand-blown borosilicate",
-      Canopy: "Bronze",
-      Lighting: "Integrated LED, dimmable",
-      Origin: "Made in Italy",
-    },
-    dimensions: { width: 120, height: 90, depth: 120, unit: "cm" },
-    materials: ["Glass", "Bronze", "LED"],
-    finishes: [finishes[3]],
-    colors: [colors[0]],
-    inStock: true,
-    sku: "CLOUD-LI-007",
-    rating: 4.9,
-    reviewCount: 7,
-    isNew: true,
-  },
-  {
-    id: "p8",
-    slug: "vela-accent-chair",
-    name: "Vela Accent Chair",
-    category: "Seating",
-    collectionSlug: "metropolitan-loft",
-    price: 7200,
-    currency: "DZD",
-    thumbnail: unsplash("photo-1621293954908-907159247fc8"),
-    images: [unsplash("photo-1621293954908-907159247fc8"), unsplash("photo-1600210491892-03d54c0aaf87")],
-    shortDescription: "Curved leather armchair on a bronze swivel base.",
-    description:
-      "Vela combines a sweeping leather shell with a precision-machined bronze swivel base. The compact footprint makes it ideal for reading corners and lounges.",
-    specifications: {
-      Shell: "Fiberglass with leather upholstery",
-      Base: "Bronze swivel",
-      Origin: "Made in Italy",
-    },
-    dimensions: { width: 78, height: 82, depth: 78, unit: "cm" },
-    materials: ["Leather", "Fiberglass", "Bronze"],
-    finishes,
-    colors,
-    inStock: true,
-    sku: "VELA-AC-008",
-    rating: 4.7,
-    reviewCount: 16,
-  },
-  {
-    id: "p9",
-    slug: "omnia-wardrobe",
-    name: "Omnia Wardrobe System",
-    category: "Storage",
-    collectionSlug: "serenity-suite",
-    price: 15600,
-    currency: "DZD",
-    thumbnail: unsplash("photo-1502672263226-2774872f3e8f"),
-    images: [unsplash("photo-1502672263226-2774872f3e8f"), unsplash("photo-1564078516393-cf04bd966897")],
-    shortDescription: "Floor-to-ceiling wardrobe with integrated lighting and bronze frames.",
-    description:
-      "Omnia redefines the walk-in wardrobe as a boutique experience. Glass, oak and bronze frames create a modular system that adapts to any ceiling height.",
-    specifications: {
-      Structure: "Bronze-framed oak",
-      Doors: "Tinted glass / oak panels",
-      Lighting: "Integrated LED",
-      Origin: "Made in Italy",
-    },
-    dimensions: { width: 300, height: 270, depth: 60, unit: "cm" },
-    materials: ["Oak", "Bronze", "Glass", "LED"],
-    finishes,
-    colors,
-    inStock: true,
-    sku: "OMNIA-WS-009",
-    rating: 4.8,
-    reviewCount: 5,
-  },
-];
-
-// Link products into collections
-collections.forEach((collection) => {
-  collection.products = products.filter((p) => p.collectionSlug === collection.slug);
-});
-
-export const testimonials: Testimonial[] = [
-  {
-    id: "t1",
-    quote:
-      "Adlane transformed our penthouse into a gallery of comfort. Every piece feels curated, every material honest.",
-    author: "Elena Marchetti",
-    role: "Private Client, Milan",
-    project: "Metropolitan Loft",
-    image: unsplash("photo-1500648767791-00dcc994a43e"),
-  },
-  {
-    id: "t2",
-    quote:
-      "The 360° showroom allowed us to walk through the room before a single piece arrived. It made the decision effortless.",
-    author: "Thomas Whitfield",
-    role: "Creative Director, New York",
-    project: "Serenity Suite",
-    image: unsplash("photo-1632765854612-9b02b6ec2b15"),
-  },
-  {
-    id: "t3",
-    quote:
-      "Rarely does a furniture house understand both scale and soul. Adlane delivered both with quiet confidence.",
-    author: "Sarah Okonjo",
-    role: "Architect, Lagos",
-    project: "Villa Verde Dining",
-    image: unsplash("photo-1534528741775-53994a69daeb"),
-  },
-];
-
-export const projects: Project[] = [
-  {
-    id: "pr1",
-    slug: "amalfi-villa",
-    title: "Amalfi Villa",
-    location: "Ravello, Italy",
-    year: "2024",
-    description:
-      "A full-home curation blending Mediterranean light with Italian minimalism. Each room was conceived as a suite.",
-    images: [unsplash("photo-1581784878214-8d5596b98a01"), unsplash("photo-1562438668-bcf0ca6578f0")],
-    services: ["Interior Curation", "Custom Furniture", "Lighting Design"],
-    squareMeters: 420,
-  },
-  {
-    id: "pr2",
-    slug: "tokyo-penthouse",
-    title: "Tokyo Penthouse",
-    location: "Minato, Tokyo",
-    year: "2023",
-    description:
-      "Urban sanctuary above the city. Monolithic materials and soft textiles balance the panoramic skyline.",
-    images: [unsplash("photo-1564078516393-cf04bd966897"), unsplash("photo-1613545325278-f24b0cae1224")],
-    services: ["Room Concepts", "360° Planning", "Art Curation"],
-    squareMeters: 280,
-  },
-  {
-    id: "pr3",
-    slug: "marrakech-riad",
-    title: "Marrakech Riad",
-    location: "Marrakech, Morocco",
-    year: "2023",
-    description:
-      "Earth-toned luxury within ancient walls. Tadelakt, bronze and travertine meet contemporary Italian forms.",
-    images: [unsplash("photo-1581783458534-001a466b5487"), unsplash("photo-1621293954908-907159247fc8")],
-    services: ["Full Renovation", "Bespoke Dining", "Material Library"],
-    squareMeters: 350,
-  },
-];
-
-export const categories = Array.from(new Set(products.map((p) => p.category)));
+export const products: Product[] = [];
+export const testimonials: Testimonial[] = [];
+export const projects: Project[] = [];
+export const categories: string[] = [];

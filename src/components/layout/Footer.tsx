@@ -1,5 +1,10 @@
+"use client";
+
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import { useLocale } from "@/lib/i18n/LocaleProvider";
+import { Logo } from "@/components/ui/Logo";
+import { LangToggle } from "@/components/ui/LangToggle";
 
 const socialIcons = [
   {
@@ -24,69 +29,65 @@ const socialIcons = [
   },
 ];
 
-const footerLinks = {
-  explore: [
-    { label: "Collections", href: "/collections" },
-    { label: "360° Showroom", href: "/experience/serenity-suite" },
-    { label: "Projects", href: "/projects" },
-    { label: "Gallery", href: "/gallery" },
-  ],
-  company: [
-    { label: "About", href: "/about" },
-    { label: "Contact", href: "/contact" },
-    { label: "Careers", href: "#" },
-    { label: "Press", href: "#" },
-  ],
-  service: [
-    { label: "Book a Showroom Visit", href: "/booking" },
-    { label: "Interior Consultation", href: "/booking" },
-    { label: "Trade Program", href: "#" },
-    { label: "Delivery & Returns", href: "#" },
-  ],
-};
-
 export function Footer() {
+  const { t, isAr } = useLocale();
+
+  const footerLinks = {
+    explore: [
+      { label: t("collections"), href: "/collections" },
+      { label: t("showroom"), href: "/experience/serenity-suite" },
+    ],
+    company: [
+      { label: t("contact"), href: "/contact" },
+    ],
+    service: [
+      { label: t("bookVisit"), href: "/booking" },
+    ],
+  };
+
   return (
     <footer className="border-t border-[#E8E0D5]/60 bg-[#FAFAF8] px-6 py-20 dark:border-white/10 dark:bg-[#1A1816] lg:px-10">
       <div className="mx-auto max-w-[1600px]">
         <div className="grid gap-16 lg:grid-cols-12">
           <div className="lg:col-span-5">
-            <Link href="/" className="font-serif text-3xl font-medium tracking-tight">
-              Adlane
+            <Link href="/" className="text-foreground">
+              <Logo />
             </Link>
             <p className="mt-6 max-w-sm text-[15px] leading-relaxed text-foreground/60">
-              Curated luxury interiors, complete room concepts, and an immersive
-              digital showroom. Designed for those who live beautifully.
+              {t("footerTagline")}
             </p>
-            <div className="mt-8 flex gap-4">
-              {socialIcons.map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  aria-label={social.label}
-                  className="flex h-11 w-11 items-center justify-center rounded-full border border-[#E8E0D5] transition-colors hover:border-[#8B6F4E] hover:bg-[#8B6F4E] hover:text-white dark:border-white/10"
-                >
-                  <svg
-                    className="h-4 w-4"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
+            <div className="mt-8 flex items-center gap-4">
+              <LangToggle />
+              <div className="flex gap-4">
+                {socialIcons.map((social) => (
+                  <a
+                    key={social.label}
+                    href={social.href}
+                    aria-label={social.label}
+                    className="flex h-11 w-11 items-center justify-center rounded-full border border-[#E8E0D5] transition-colors hover:border-[#8B6F4E] hover:bg-[#8B6F4E] hover:text-white dark:border-white/10"
                   >
-                    <path d={social.path} />
-                  </svg>
-                </a>
-              ))}
+                    <svg
+                      className="h-4 w-4"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                    >
+                      <path d={social.path} />
+                    </svg>
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
 
           <div className="grid gap-10 sm:grid-cols-3 lg:col-span-7">
             <div>
               <h4 className="mb-6 text-xs font-semibold uppercase tracking-[0.18em] text-foreground/50">
-                Explore
+                {t("explore")}
               </h4>
               <ul className="space-y-4">
                 {footerLinks.explore.map((link) => (
-                  <li key={link.href}>
+                  <li key={link.label}>
                     <Link
                       href={link.href}
                       className="group inline-flex items-center gap-1 text-[15px] text-foreground/80 transition-colors hover:text-foreground"
@@ -104,7 +105,7 @@ export function Footer() {
               </h4>
               <ul className="space-y-4">
                 {footerLinks.company.map((link) => (
-                  <li key={link.label}>
+                  <li key={link.href === "#" ? link.label : link.href}>
                     <Link
                       href={link.href}
                       className="group inline-flex items-center gap-1 text-[15px] text-foreground/80 transition-colors hover:text-foreground"
@@ -137,14 +138,20 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-20 flex flex-col items-center justify-between gap-6 border-t border-[#E8E0D5]/60 pt-8 text-sm text-foreground/50 dark:border-white/10 sm:flex-row">
-          <p>© {new Date().getFullYear()} Adlane Interiors. All rights reserved.</p>
+        <div
+          className={`mt-20 flex flex-col items-center justify-between gap-6 border-t border-[#E8E0D5]/60 pt-8 text-sm text-foreground/50 dark:border-white/10 sm:flex-row ${
+            isAr ? "sm:flex-row-reverse" : ""
+          }`}
+        >
+          <p>
+            © {new Date().getFullYear()} {t("copyright")}
+          </p>
           <div className="flex gap-8">
             <Link href="#" className="hover:text-foreground">
-              Privacy Policy
+              {t("privacy")}
             </Link>
             <Link href="#" className="hover:text-foreground">
-              Terms of Service
+              {t("terms")}
             </Link>
           </div>
         </div>

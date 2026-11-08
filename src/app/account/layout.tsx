@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "My Account | Adlane Luxury Interiors",
+  title: "My Account | Lamsa Luxury Interiors",
   description: "Manage your orders, wishlist, bookings and account settings.",
 };
 

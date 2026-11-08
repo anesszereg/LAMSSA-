@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Inter } from "next/font/google";
+import { Cormorant_Garamond, Inter, Noto_Kufi_Arabic } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/providers/Providers";
 import { PublicShell } from "@/components/layout/PublicShell";
@@ -17,8 +17,15 @@ const cormorant = Cormorant_Garamond({
   display: "swap",
 });
 
+const notoKufi = Noto_Kufi_Arabic({
+  variable: "--font-arabic",
+  subsets: ["arabic"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
-  title: "Adlane | Luxury Interior Showroom",
+  title: "Lamsa | Luxury Interior Showroom",
   description:
     "Immersive digital showroom for curated luxury interiors. Explore complete room concepts in 360°, customize finishes, and book a private design consultation.",
   keywords: [
@@ -26,11 +33,10 @@ export const metadata: Metadata = {
     "interior design",
     "showroom",
     "360 experience",
-    "made in Italy",
     "home decor",
   ],
   openGraph: {
-    title: "Adlane | Luxury Interior Showroom",
+    title: "Lamsa | Luxury Interior Showroom",
     description:
       "Explore complete luxury room concepts, walk through rooms in 360°, and shop individual furniture pieces.",
     type: "website",
@@ -45,7 +51,8 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${cormorant.variable} h-full antialiased`}
+      dir="ltr"
+      className={`${inter.variable} ${cormorant.variable} ${notoKufi.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">

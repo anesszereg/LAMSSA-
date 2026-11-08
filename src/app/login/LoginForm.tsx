@@ -39,7 +39,7 @@ export function LoginForm() {
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="admin@adlane.com or user@adlane.com"
+          placeholder="admin@lamsa.com or user@lamsa.com"
           className="h-12 w-full rounded-xl border border-[#E8E0D5] bg-transparent px-4 text-sm outline-none transition-colors focus:border-[#8B6F4E] dark:border-white/10"
           required
         />

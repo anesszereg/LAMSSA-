@@ -2,7 +2,7 @@ import type { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 export const authOptions: NextAuthOptions = {
-  secret: process.env.NEXTAUTH_SECRET || "adlane-local-dev-secret-change-me",
+  secret: process.env.NEXTAUTH_SECRET || "lamsa-local-dev-secret-change-me",
   session: {
     strategy: "jwt",
     maxAge: 60 * 60 * 24,
@@ -15,21 +15,21 @@ export const authOptions: NextAuthOptions = {
     CredentialsProvider({
       name: "credentials",
       credentials: {
-        email: { label: "Email", type: "email", placeholder: "admin@adlane.com" },
+        email: { label: "Email", type: "email", placeholder: "admin@lamsa.com" },
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
         const users = [
           {
             id: "admin-1",
-            email: "admin@adlane.com",
+            email: "admin@lamsa.com",
             password: process.env.ADMIN_PASSWORD || "admin123",
             name: "Admin User",
             role: "admin",
           },
           {
             id: "user-1",
-            email: "user@adlane.com",
+            email: "user@lamsa.com",
             password: process.env.USER_PASSWORD || "user123",
             name: "Sophia Laurent",
             role: "user",

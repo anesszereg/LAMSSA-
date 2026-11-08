@@ -7,6 +7,7 @@ import { formatPrice, formatDimension } from "@/lib/utils";
 import { MagneticButton } from "@/components/luxury/MagneticButton";
 import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/luxury/ScrollReveal";
 import { ProductCard } from "@/components/luxury/ProductCard";
+import { ScrollCinema } from "@/components/luxury/ScrollCinema";
 
 export async function generateStaticParams() {
   return collections.map((c) => ({ slug: c.slug }));
@@ -20,7 +21,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const collection = collections.find((c) => c.slug === slug);
   return {
-    title: `${collection?.name || "Collection"} | Adlane`,
+    title: `${collection?.name || "Collection"} | Lamsa`,
     description: collection?.tagline,
   };
 }
@@ -61,6 +62,18 @@ export default async function CollectionDetailPage({
           </div>
         </div>
       </section>
+
+      {/* CINEMATIC FILM — scroll-scrubbed */}
+      {collection.videoUrl && (
+        <div id="film">
+          <ScrollCinema
+          src={collection.videoUrl}
+          index={1}
+          title={collection.name}
+          tagline={collection.tagline}
+        />
+        </div>
+      )}
 
       {/* STORY */}
       <section className="mx-auto max-w-[1600px] px-6 py-24 lg:px-10">

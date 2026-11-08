@@ -15,7 +15,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const collection = collections.find((c) => c.slug === slug);
   return {
-    title: collection ? `360° ${collection.name} | Adlane` : "360° Experience | Adlane",
+    title: collection ? `360° ${collection.name} | Lamsa` : "360° Experience | Lamsa",
     description: collection?.tagline,
   };
 }

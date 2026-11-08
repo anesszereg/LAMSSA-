@@ -49,9 +49,9 @@ export default function ContactPage() {
 
             <div className="mt-12 space-y-6">
               {[
-                { icon: MapPin, label: "Adlane Atelier", value: "Via Monte Napoleone 23, Milan" },
+                { icon: MapPin, label: "Lamsa Atelier", value: "Via Monte Napoleone 23, Milan" },
                 { icon: Phone, label: "Phone", value: "+39 02 1234 5678" },
-                { icon: Mail, label: "Email", value: "studio@adlane.com" },
+                { icon: Mail, label: "Email", value: "studio@lamsa.com" },
                 { icon: Clock, label: "Showroom Hours", value: "Mon–Sat, 10am–7pm CET" },
               ].map((item) => (
                 <div key={item.label} className="flex items-start gap-4">

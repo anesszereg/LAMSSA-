@@ -47,6 +47,8 @@ export interface Collection {
   tagline: string;
   heroImage: string;
   gallery: string[];
+  tourUrl?: string;
+  videoUrl?: string;
   story: string;
   designerNotes: string;
   materials: string[];

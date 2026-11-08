@@ -44,6 +44,6 @@ export const useCartStore = create<CartState>()(
       getItemCount: () =>
         get().items.reduce((acc, item) => acc + item.quantity, 0),
     }),
-    { name: "adlane-cart" }
+    { name: "lamsa-cart" }
   )
 );
