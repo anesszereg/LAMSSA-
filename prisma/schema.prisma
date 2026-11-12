@@ -22,6 +22,8 @@ model Collection {
   materials      String[]
   colorPalette   Json     @map("color_palette")
   gallery        String[]
+  videoUrl       String?  @map("video_url")
+  tourUrl        String?  @map("tour_url")
 
   products       Product[]
 

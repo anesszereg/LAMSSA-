@@ -2,15 +2,18 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import { ArrowRight, Ruler, Palette, BookOpen } from "lucide-react";
-import { collections } from "@/lib/data";
+import { getCollections } from "@/lib/collections";
+
+export const dynamic = "force-dynamic";
 import { formatPrice, formatDimension } from "@/lib/utils";
 import { MagneticButton } from "@/components/luxury/MagneticButton";
 import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/luxury/ScrollReveal";
 import { ProductCard } from "@/components/luxury/ProductCard";
 import { ScrollCinema } from "@/components/luxury/ScrollCinema";
+import { RoomPurchase } from "@/components/shop/RoomPurchase";
 
 export async function generateStaticParams() {
-  return collections.map((c) => ({ slug: c.slug }));
+  return (await getCollections()).map((c) => ({ slug: c.slug }));
 }
 
 export async function generateMetadata({
@@ -19,10 +22,23 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const collection = collections.find((c) => c.slug === slug);
+  const collection = (await getCollections()).find((c) => c.slug === slug);
   return {
     title: `${collection?.name || "Collection"} | Lamsa`,
     description: collection?.tagline,
+    alternates: { canonical: `/collections/${slug}` },
+    openGraph: {
+      title: `${collection?.name || "Collection"} | Lamsa`,
+      description: collection?.tagline,
+      url: `/collections/${slug}`,
+      images: collection ? [{ url: collection.heroImage, alt: collection.name }] : [],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${collection?.name || "Collection"} | Lamsa`,
+      description: collection?.tagline,
+      images: collection ? [collection.heroImage] : [],
+    },
   };
 }
 
@@ -32,7 +48,7 @@ export default async function CollectionDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const collection = collections.find((c) => c.slug === slug);
+  const collection = (await getCollections()).find((c) => c.slug === slug);
   if (!collection) return notFound();
 
   return (
@@ -185,7 +201,8 @@ export default async function CollectionDetailPage({
                 Includes all furniture, materials, and finishes shown.
               </p>
             </div>
-            <div className="flex flex-wrap gap-4">
+            <div className="flex w-full flex-wrap gap-4 lg:max-w-sm">
+              <RoomPurchase slug={collection.slug} />
               <MagneticButton
                 href={`/experience/${collection.slug}`}
                 variant="secondary"
@@ -194,7 +211,7 @@ export default async function CollectionDetailPage({
                 <ArrowRight className="h-4 w-4" />
               </MagneticButton>
               <MagneticButton href="/booking" variant="outline">
-                Book Consultation
+                Book a Call
               </MagneticButton>
             </div>
           </div>
@@ -214,7 +231,7 @@ export default async function CollectionDetailPage({
               </h2>
             </div>
             <MagneticButton href="/experience/serenity-suite" variant="outline">
-              Experience 360° Showroom
+              Explore Lamsa Immersion
             </MagneticButton>
           </div>
         </ScrollReveal>

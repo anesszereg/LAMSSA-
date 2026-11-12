@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Contact | Lamsa Luxury Interiors",
-  description: "Get in touch with the Lamsa team for showroom appointments and design inquiries.",
+  description: "Get in touch with the Lamsa team for customer support calls and room inquiries.",
 };
 
 export default function ContactLayout({

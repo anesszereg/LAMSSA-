@@ -6,6 +6,7 @@ import {
   useScroll,
   useTransform,
   useMotionValueEvent,
+  useInView,
 } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
@@ -27,6 +28,7 @@ export function ScrollCinema({
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const durationRef = useRef(0);
+  const nearViewport = useInView(containerRef, { margin: "600px 0px", once: true });
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -57,14 +59,16 @@ export function ScrollCinema({
       <div className="sticky top-0 h-screen w-full overflow-hidden bg-[#1A1816]">
         <motion.video
           ref={videoRef}
-          src={src}
+          src={nearViewport ? src : undefined}
           style={{ scale: videoScale }}
           className="h-full w-full object-cover"
           muted
           playsInline
           preload="auto"
           onLoadedMetadata={(e) => {
-            durationRef.current = e.currentTarget.duration;
+            const video = e.currentTarget;
+            durationRef.current = Number.isFinite(video.duration) ? video.duration : 0;
+            video.currentTime = scrollYProgress.get() * durationRef.current;
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30" />

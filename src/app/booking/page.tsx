@@ -5,13 +5,15 @@ import { Calendar, Clock, User, Mail, Phone, MessageSquare } from "lucide-react"
 import { MagneticButton } from "@/components/luxury/MagneticButton";
 import { ScrollReveal } from "@/components/luxury/ScrollReveal";
 import { toast } from "sonner";
+import { useLocale } from "@/lib/i18n/LocaleProvider";
 
 const timeSlots = [
   "10:00", "11:00", "12:00", "14:00", "15:00", "16:00", "17:00", "18:00"
 ];
 
 export default function BookingPage() {
-  const [type, setType] = useState<"showroom" | "consultation">("showroom");
+  const { t, dir } = useLocale();
+  const [type, setType] = useState<"support_call" | "design_call">("support_call");
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -23,6 +25,10 @@ export default function BookingPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!form.time) {
+      toast.error(t("preferredTime"));
+      return;
+    }
     try {
       const res = await fetch("/api/booking", {
         method: "POST",
@@ -31,7 +37,7 @@ export default function BookingPage() {
       });
       if (res.ok) {
         toast.success(
-          `Your ${type === "showroom" ? "showroom visit" : "consultation"} request has been received. We will confirm shortly.`
+          t(type === "support_call" ? "bookingSuccessShowroom" : "bookingSuccessConsultation")
         );
         setForm({ name: "", email: "", phone: "", date: "", time: "", notes: "" });
       } else {
@@ -44,18 +50,17 @@ export default function BookingPage() {
   };
 
   return (
-    <div className="bg-[#FAFAF8] pb-32 pt-40 dark:bg-[#1A1816]">
+    <div dir={dir} className="bg-[#FAFAF8] pb-32 pt-40 dark:bg-[#1A1816]">
       <div className="mx-auto max-w-[1100px] px-6 lg:px-10">
         <ScrollReveal className="mb-12 text-center">
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-[#8B6F4E]">
-            Private Appointments
+            {t("privateAppointments")}
           </p>
           <h1 className="editorial-heading font-serif text-5xl font-light md:text-6xl">
-            Book your experience
+            {t("bookingTitle")}
           </h1>
           <p className="mx-auto mt-5 max-w-xl text-lg text-foreground/70">
-            Choose a showroom visit to experience our collections, or a design
-            consultation to plan your space.
+            {t("bookingDescription")}
           </p>
         </ScrollReveal>
 
@@ -65,18 +70,18 @@ export default function BookingPage() {
             className="rounded-[2rem] bg-white p-8 shadow-sm dark:bg-[#2C2A26] lg:p-16"
           >
             <div className="mb-10 grid grid-cols-2 gap-4">
-              {(["showroom", "consultation"] as const).map((t) => (
+              {(["support_call", "design_call"] as const).map((callType) => (
                 <button
-                  key={t}
+                  key={callType}
                   type="button"
-                  onClick={() => setType(t)}
+                  onClick={() => setType(callType)}
                   className={`rounded-xl py-4 text-sm font-medium uppercase tracking-wider transition-all ${
-                    type === t
+                    type === callType
                       ? "bg-[#1A1816] text-white dark:bg-[#FAFAF8] dark:text-[#1A1816]"
                       : "border border-[#E8E0D5] text-foreground/70 hover:border-[#8B6F4E] dark:border-white/10"
                   }`}
                 >
-                  {t === "showroom" ? "Showroom Visit" : "Design Consultation"}
+                  {t(callType === "support_call" ? "showroomVisit" : "designConsultation")}
                 </button>
               ))}
             </div>
@@ -103,6 +108,7 @@ export default function BookingPage() {
                 type="tel"
                 value={form.phone}
                 onChange={(v) => setForm({ ...form, phone: v })}
+                required
               />
               <Field
                 icon={Calendar}

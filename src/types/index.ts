@@ -91,7 +91,7 @@ export interface CartItem {
 
 export interface Booking {
   id: string;
-  type: 'showroom' | 'consultation';
+  type: 'showroom' | 'consultation' | 'support_call' | 'design_call';
   date: string;
   time: string;
   name: string;
@@ -110,7 +110,11 @@ export interface Order {
   userEmail?: string;
   date?: string;
   createdAt?: string;
-  items?: { productId: string; quantity: number; price: number }[];
+  phone?: string;
+  shippingAddress?: { country: string; wilaya: string; wilayaName: string; commune: string; address: string };
+  notes?: string;
+  paymentStatus?: string;
+  items?: { productId?: string; name?: string; quantity: number; price: number }[];
 }
 
 export interface Hotspot {

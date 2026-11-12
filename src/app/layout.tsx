@@ -25,6 +25,13 @@ const notoKufi = Noto_Kufi_Arabic({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://lamsa.com"),
+  twitter: {
+    card: "summary_large_image",
+    title: "Lamsa | Luxury Interior Showroom",
+    description: "Discover curated luxury rooms, cinematic films and immersive 360° tours.",
+    images: ["/room-1/DSC07330.jpg"],
+  },
   title: "Lamsa | Luxury Interior Showroom",
   description:
     "Immersive digital showroom for curated luxury interiors. Explore complete room concepts in 360°, customize finishes, and book a private design consultation.",
@@ -40,6 +47,8 @@ export const metadata: Metadata = {
     description:
       "Explore complete luxury room concepts, walk through rooms in 360°, and shop individual furniture pieces.",
     type: "website",
+    siteName: "Lamsa",
+    images: [{ url: "/room-1/DSC07330.jpg", alt: "Lamsa luxury bedroom interior" }],
   },
 };
 

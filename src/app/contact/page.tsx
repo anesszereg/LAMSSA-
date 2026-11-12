@@ -43,8 +43,8 @@ export default function ContactPage() {
               something lasting.
             </h1>
             <p className="editorial-body mt-6 max-w-lg text-lg leading-relaxed text-foreground/70">
-              Whether you are planning a full residence, a single room, or a private
-              showroom visit, our design team is here to guide every decision.
+              Whether you need help choosing a room, understanding prices, or tracking
+              an order, our customer support team is here to help.
             </p>
 
             <div className="mt-12 space-y-6">

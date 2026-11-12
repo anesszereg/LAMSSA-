@@ -20,12 +20,12 @@ export const dictionary: Record<Locale, Dictionary> = {
   en: {
     home: "Home",
     collections: "Collections",
-    showroom: "360° Showroom",
+    showroom: "Lamsa Immersion",
     projects: "Projects",
     gallery: "Gallery",
     about: "About",
     contact: "Contact",
-    bookVisit: "Book a Visit",
+    bookVisit: "Book a Call",
     signIn: "Sign In",
     signOut: "Sign Out",
     admin: "Admin",
@@ -38,7 +38,7 @@ export const dictionary: Record<Locale, Dictionary> = {
     luxuryShowroom: "Luxury Interior Showroom",
     explore: "Explore",
     exploreCollections: "Explore Collections",
-    bookShowroom: "Book Showroom Visit",
+    bookShowroom: "Talk to Customer Support",
     viewIn360: "View in 360°",
     shop: "Shop",
     readMore: "Read More",
@@ -62,7 +62,7 @@ export const dictionary: Record<Locale, Dictionary> = {
     heroTitle1: "Live in a",
     heroTitle2: "work of art.",
     heroDescription:
-      "Explore complete room concepts in 360°, curate every finish, and book a private showroom visit with our design team.",
+      "Explore complete room concepts in 360°, curate every finish, and book a customer support call with our design team.",
     scroll: "Scroll",
     lamsaPhilosophy: "The Lamsa Philosophy",
     introTitle1: "Every room is a",
@@ -73,22 +73,22 @@ export const dictionary: Record<Locale, Dictionary> = {
     curatedCollections: "Curated Collections",
     roomConcepts: "Room concepts",
     viewAllCollections: "View All Collections",
-    threeSixtyExperience: "360° Experience",
+    threeSixtyExperience: "Lamsa Immersion",
     showroomHeroTitle:
       "Walk through your future room before a single piece arrives.",
     showroomHeroDescription:
       "Explore every collection in real-time 3D. Change finishes, wall colors and lighting. Click furniture to shop the piece.",
-    launch360Showroom: "Launch 360° Showroom",
+    launch360Showroom: "Launch Lamsa Immersion",
     signaturePieces: "Signature Pieces",
     shopIndividualWorks: "Shop individual works",
     browseCollections: "Browse Collections",
     clientVoices: "Client Voices",
     testimonialsHeading: "Designed for discerning lives",
-    privateAppointments: "Private Appointments",
+    privateAppointments: "Customer Support",
     showroomVisitTitle:
-      "Visit our showroom and let the room speak for itself.",
+      "A little guidance. A conversation away.",
     showroomVisitDescription:
-      "Schedule a one-on-one consultation with our design team to experience materials, configure finishes, and plan your space.",
+      "Book a call with our customer support team for help choosing your room, understanding prices, or tracking your order.",
 
     // Collections
     roomCollections: "Room Collections",
@@ -103,10 +103,10 @@ export const dictionary: Record<Locale, Dictionary> = {
     estimatedCollectionPrice: "Estimated Collection Price",
     includesAll: "Includes all furniture, materials, and finishes shown.",
     exploreIn360: "Explore in 360°",
-    bookConsultation: "Book Consultation",
+    bookConsultation: "Book a Call",
     furnitureIncluded: "Furniture Included",
     shopTheRoom: "Shop the room",
-    experience360Showroom: "Experience 360° Showroom",
+    experience360Showroom: "Experience Lamsa Immersion",
 
     // Projects
     portfolio: "Portfolio",
@@ -135,7 +135,7 @@ export const dictionary: Record<Locale, Dictionary> = {
     contactTitle1: "Let's create",
     contactTitle2: "something lasting.",
     contactIntro:
-      "Whether you are planning a full residence, a single room, or a private showroom visit, our design team is here to guide every decision.",
+      "Whether you are planning a full residence, a single room, or a customer support call, our design team is here to guide every decision.",
     lamsaAtelier: "Lamsa Atelier",
     phone: "Phone",
     email: "Email",
@@ -152,11 +152,11 @@ export const dictionary: Record<Locale, Dictionary> = {
     galleryTitle: "A world of refined detail",
 
     // Booking
-    bookingTitle: "Book your experience",
+    bookingTitle: "Book a call",
     bookingDescription:
-      "Choose a showroom visit to experience our collections, or a design consultation to plan your space.",
-    showroomVisit: "Showroom Visit",
-    designConsultation: "Design Consultation",
+      "Schedule a call for room advice or help from our customer support team.",
+    showroomVisit: "Customer Support Call",
+    designConsultation: "Room Advice Call",
     fullName: "Full Name",
     preferredDate: "Preferred Date",
     preferredTime: "Preferred Time",
@@ -165,7 +165,7 @@ export const dictionary: Record<Locale, Dictionary> = {
       "Tell us about your project, preferred collection, or any accessibility needs...",
     confirmBookingRequest: "Confirm Booking Request",
     bookingSuccessShowroom:
-      "Your showroom visit request has been received. We will confirm shortly.",
+      "Your customer support call request has been received. We will confirm shortly.",
     bookingSuccessConsultation:
       "Your consultation request has been received. We will confirm shortly.",
     bookingFailed: "Failed to submit booking.",
@@ -240,12 +240,12 @@ export const dictionary: Record<Locale, Dictionary> = {
   ar: {
     home: "الرئيسية",
     collections: "المجموعات",
-    showroom: "العرض ثلاثي الأبعاد",
+    showroom: "عالم لمسة",
     projects: "المشاريع",
     gallery: "المعرض",
     about: "من نحن",
     contact: "تواصل معنا",
-    bookVisit: "حجز زيارة",
+    bookVisit: "حجز مكالمة",
     signIn: "تسجيل الدخول",
     signOut: "تسجيل الخروج",
     admin: "الإدارة",
@@ -258,7 +258,7 @@ export const dictionary: Record<Locale, Dictionary> = {
     luxuryShowroom: "صالون الديكور الفاخر",
     explore: "استكشاف",
     exploreCollections: "استكشاف المجموعات",
-    bookShowroom: "حجز زيارة الصالون",
+    bookShowroom: "تحدث مع خدمة العملاء",
     viewIn360: "المشاهدة بزاوية 360°",
     shop: "تسوق",
     readMore: "اقرأ المزيد",
@@ -282,7 +282,7 @@ export const dictionary: Record<Locale, Dictionary> = {
     heroTitle1: "عش في",
     heroTitle2: "تحفة فنية.",
     heroDescription:
-      "استكشف مفاهيم الغرف الكاملة بزاوية 360°، واختر كل تشطيب، واحجز زيارة صالون خاصة مع فريق التصميم لدينا.",
+      "استكشف مفاهيم الغرف الكاملة بزاوية 360°، واختر كل تشطيب، واحجز مكالمة مع فريق خدمة العملاء لدينا.",
     scroll: "تمرير",
     lamsaPhilosophy: "فلسفة لامسا",
     introTitle1: "كل غرفة هي",
@@ -293,20 +293,20 @@ export const dictionary: Record<Locale, Dictionary> = {
     curatedCollections: "مجموعات مختارة",
     roomConcepts: "مفاهيم الغرف",
     viewAllCollections: "عرض كل المجموعات",
-    threeSixtyExperience: "تجربة 360°",
+    threeSixtyExperience: "عالم لمسة",
     showroomHeroTitle: "تجول في غرفتك المستقبلية قبل وصول أول قطعة.",
     showroomHeroDescription:
       "استكشف كل مجموعة بتقنية 3D الفورية. غيّر التشطيبات وألوان الجدران والإضاءة. اضغط على الأثاث للتسوق من القطعة.",
-    launch360Showroom: "تشغيل صالون 360°",
+    launch360Showroom: "اكتشف عالم لمسة",
     signaturePieces: "قطع مميزة",
     shopIndividualWorks: "تسوق قطع فردية",
     browseCollections: "تصفح المجموعات",
     clientVoices: "آراء العملاء",
     testimonialsHeading: "صُممت لحياة الرقيّ",
-    privateAppointments: "مواعيد خاصة",
-    showroomVisitTitle: "زُر صالوننا واترك الغرفة تتحدث عن نفسها.",
+    privateAppointments: "خدمة العملاء",
+    showroomVisitTitle: "نحن هنا لمساعدتك، بمكالمة واحدة.",
     showroomVisitDescription:
-      "حدّد موعد استشارة فردية مع فريق التصميم لدينا لتجربة المواد وتهيئة التشطيبات وتخطيط مساحتك.",
+      "احجز مكالمة مع فريق خدمة العملاء للمساعدة في اختيار غرفتك ومعرفة الأسعار ومتابعة طلبك.",
 
     // Collections
     roomCollections: "مجموعات الغرف",
@@ -324,7 +324,7 @@ export const dictionary: Record<Locale, Dictionary> = {
     bookConsultation: "حجز استشارة",
     furnitureIncluded: "الأثاث المضمن",
     shopTheRoom: "تسوق الغرفة",
-    experience360Showroom: "جرب صالون 360°",
+    experience360Showroom: "استكشف عالم لمسة",
 
     // Projects
     portfolio: "المحفظة",
@@ -353,7 +353,7 @@ export const dictionary: Record<Locale, Dictionary> = {
     contactTitle1: "لنصنع",
     contactTitle2: "شيئاً يدوم.",
     contactIntro:
-      "سواء كنت تخطط لمنزل كامل أو غرفة واحدة أو زيارة صالون خاصة، فريق التصميم لدينا موجود لإرشادك في كل قرار.",
+      "سواء كنت تخطط لمنزل كامل أو غرفة واحدة أو مكالمة مع خدمة العملاء، فريق التصميم لدينا موجود لإرشادك في كل قرار.",
     lamsaAtelier: "أتيليه لامسا",
     phone: "الهاتف",
     email: "البريد الإلكتروني",
@@ -370,11 +370,11 @@ export const dictionary: Record<Locale, Dictionary> = {
     galleryTitle: "عالم من التفاصيل الراقية",
 
     // Booking
-    bookingTitle: "احجز تجربتك",
+    bookingTitle: "احجز مكالمة",
     bookingDescription:
-      "اختر زيارة الصالون لتجربة مجموعاتنا، أو استشارة تصميم لتخطيط مساحتك.",
-    showroomVisit: "زيارة الصالون",
-    designConsultation: "استشارة تصميم",
+      "حدد موعد مكالمة للحصول على نصائح حول الغرف أو مساعدة من فريق خدمة العملاء.",
+    showroomVisit: "مكالمة خدمة العملاء",
+    designConsultation: "مكالمة استشارة للغرفة",
     fullName: "الاسم الكامل",
     preferredDate: "التاريخ المفضل",
     preferredTime: "الوقت المفضل",
@@ -383,7 +383,7 @@ export const dictionary: Record<Locale, Dictionary> = {
       "اخبرنا عن مشروعك، أو المجموعة المفضلة، أو أي احتياجات خاصة...",
     confirmBookingRequest: "تأكيد طلب الحجز",
     bookingSuccessShowroom:
-      "تم استلام طلب زيارة الصالون. سنؤكد لك قريباً.",
+      "تم استلام طلب مكالمة خدمة العملاء. سنؤكد الموعد قريباً.",
     bookingSuccessConsultation:
       "تم استلام طلب الاستشارة. سنؤكد لك قريباً.",
     bookingFailed: "فشل إرسال طلب الحجز.",

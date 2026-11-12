@@ -19,6 +19,7 @@ import { toast } from "sonner";
 import { Pencil, Trash2, Plus, Search } from "lucide-react";
 import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
 import { AdminCard } from "@/components/admin/AdminCard";
+import { MediaUploader } from "@/components/admin/MediaUploader";
 
 const emptyForm = {
   name: "",
@@ -26,6 +27,8 @@ const emptyForm = {
   roomType: "",
   tagline: "",
   heroImage: "",
+  videoUrl: "",
+  tourUrl: "",
   story: "",
   designerNotes: "",
   estimatedPrice: "",
@@ -111,6 +114,8 @@ export default function AdminCollectionsPage() {
       roomType: collection.roomType,
       tagline: collection.tagline,
       heroImage: collection.heroImage,
+      videoUrl: collection.videoUrl || "",
+      tourUrl: collection.tourUrl || "",
       story: collection.story,
       designerNotes: collection.designerNotes,
       estimatedPrice: String(collection.estimatedPrice),
@@ -146,6 +151,8 @@ export default function AdminCollectionsPage() {
       roomType: form.roomType,
       tagline: form.tagline,
       heroImage: form.heroImage,
+      videoUrl: form.videoUrl,
+      tourUrl: form.tourUrl,
       story: form.story,
       designerNotes: form.designerNotes,
       estimatedPrice: Number(form.estimatedPrice),
@@ -361,6 +368,15 @@ export default function AdminCollectionsPage() {
                       onChange={(e) => setForm({ ...form, currency: e.target.value })}
                     />
                   </Field>
+                  <MediaUploader onUpload={(url) => setForm((prev) => ({ ...prev, heroImage: url }))} />
+                  <Field label="Film URL">
+                    <Input value={form.videoUrl} onChange={(e) => setForm({ ...form, videoUrl: e.target.value })} placeholder="/videos/room1-web.mp4 or Cloudinary URL" />
+                    <MediaUploader resourceType="video" onUpload={(url) => setForm((prev) => ({ ...prev, videoUrl: url }))} />
+                    {form.videoUrl && <video src={form.videoUrl} controls preload="metadata" className="mt-3 aspect-video w-full rounded-xl" />}
+                  </Field>
+                  <Field label="360° Tour URL">
+                    <Input value={form.tourUrl} onChange={(e) => setForm({ ...form, tourUrl: e.target.value })} placeholder="https://mls.kuu.la/share/..." />
+                  </Field>
                   <Field label="Hero Image URL" required>
                     <Input
                       required
@@ -430,6 +446,8 @@ export default function AdminCollectionsPage() {
                       placeholder="Alabaster:#FAFAF8, Charcoal:#2C2A26"
                     />
                   </Field>
+                  <MediaUploader onUpload={(url) => setForm((prev) => ({ ...prev, gallery: [prev.gallery, url].filter(Boolean).join("\n") }))} />
+                  <p className="text-sm text-foreground/60">Upload photos individually. Reorder or remove photos by editing the URL lines below. Removing a URL does not delete the Cloudinary asset.</p>
                   <Field label="Gallery (one URL per line)">
                     <Textarea
                       value={form.gallery}

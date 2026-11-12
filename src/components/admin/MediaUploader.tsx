@@ -3,13 +3,14 @@
 import { CldUploadButton, CloudinaryUploadWidgetResults } from "next-cloudinary";
 import { toast } from "sonner";
 
-export function MediaUploader({ onUpload }: { onUpload?: (url: string) => void }) {
+export function MediaUploader({ onUpload, resourceType = "image" }: { onUpload?: (url: string) => void; resourceType?: "image" | "video" }) {
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <h3 className="font-serif text-xl font-light">Upload Assets</h3>
         <CldUploadButton
           signatureEndpoint="/api/admin/media/sign"
+          options={{ folder: "lamsa/media", resourceType, multiple: false, clientAllowedFormats: resourceType === "video" ? ["mp4", "webm", "mov"] : ["jpg", "jpeg", "png", "webp", "avif"] }}
           onSuccess={(result: CloudinaryUploadWidgetResults) => {
             const info = result.info as { secure_url?: string } | undefined;
             const url = info?.secure_url;
@@ -21,7 +22,7 @@ export function MediaUploader({ onUpload }: { onUpload?: (url: string) => void }
           onError={() => toast.error("Upload failed.")}
           className="rounded-full bg-[#8B6F4E] px-6 py-2 text-sm font-medium text-white transition-colors hover:bg-[#7A6042]"
         >
-          Upload Image
+          {resourceType === "video" ? "Upload Film" : "Upload Image"}
         </CldUploadButton>
       </div>
       <p className="text-sm text-foreground/60">

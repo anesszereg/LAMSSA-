@@ -42,3 +42,4 @@ next-env.d.ts
 
 # raw video masters (too large for git)
 /videos-source/
+/.local-data/

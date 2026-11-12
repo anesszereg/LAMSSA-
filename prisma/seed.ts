@@ -20,6 +20,8 @@ async function main() {
         materials: collection.materials,
         colorPalette: collection.colorPalette as Prisma.InputJsonValue,
         gallery: collection.gallery,
+        videoUrl: collection.videoUrl,
+        tourUrl: collection.tourUrl,
       },
       create: {
         id: collection.id,
@@ -36,6 +38,8 @@ async function main() {
         materials: collection.materials,
         colorPalette: collection.colorPalette as Prisma.InputJsonValue,
         gallery: collection.gallery,
+        videoUrl: collection.videoUrl,
+        tourUrl: collection.tourUrl,
       },
     });
   }

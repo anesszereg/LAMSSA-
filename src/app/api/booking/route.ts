@@ -1,11 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
+import { prisma } from "@/lib/prisma";
 
 const bookingSchema = z.object({
-  type: z.enum(["showroom", "consultation"]),
+  type: z.enum(["support_call", "design_call"]),
   name: z.string().min(1, "Name is required"),
   email: z.string().email("Invalid email"),
-  phone: z.string().optional(),
+  phone: z.string().trim().min(6, "A callback phone number is required"),
   date: z.string().min(1, "Date is required"),
   time: z.string().min(1, "Time is required"),
   notes: z.string().optional(),
@@ -24,9 +25,11 @@ export async function POST(req: NextRequest) {
     }
 
     // In production, persist to database and notify concierge team
-    console.log("Booking request:", result.data);
-
-    return NextResponse.json({ success: true, bookingId: "BK-" + Date.now() });
+    if (!process.env.DATABASE_URL) {
+      return NextResponse.json({ error: { message: "Call booking is temporarily unavailable. Please contact customer support directly." } }, { status: 503 });
+    }
+    const booking = await prisma.booking.create({ data: result.data });
+    return NextResponse.json({ success: true, bookingId: booking.id });
   } catch {
     return NextResponse.json(
       { error: "Unable to process your booking" },

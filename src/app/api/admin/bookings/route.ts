@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { z } from "zod";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth-options";
 
 const dbConfigured = !!process.env.DATABASE_URL;
 
@@ -14,6 +16,8 @@ const mockBookings = [
 ];
 
 export async function GET() {
+  const session = await getServerSession(authOptions);
+  if (session?.user?.role !== "admin") return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   if (!dbConfigured) {
     return NextResponse.json({ bookings: mockBookings });
   }
@@ -23,6 +27,8 @@ export async function GET() {
 }
 
 export async function PATCH(req: NextRequest) {
+  const session = await getServerSession(authOptions);
+  if (session?.user?.role !== "admin") return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   if (!dbConfigured) {
     return NextResponse.json({ success: true });
   }

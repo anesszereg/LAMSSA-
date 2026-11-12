@@ -93,6 +93,11 @@ export default function AdminOrdersPage() {
                         </div>
                         <span>{order.customer || order.userEmail || "Guest"}</span>
                       </div>
+                      {order.phone && <a href={`tel:${order.phone}`} className="mt-2 block text-sm text-[#8B6F4E] underline">{order.phone}</a>}
+                      {order.shippingAddress && <p className="mt-2 max-w-xs text-xs leading-relaxed text-foreground/60">{order.shippingAddress.wilaya} — {order.shippingAddress.wilayaName}, {order.shippingAddress.commune}<br />{order.shippingAddress.address}</p>}
+                      {order.items?.some((item) => item.name) && <ul className="mt-2 space-y-1 text-xs">{order.items.map((item, index) => <li key={index}>{item.name} × {item.quantity}</li>)}</ul>}
+                      {order.notes && <p className="mt-2 max-w-xs text-xs text-foreground/60">Note: {order.notes}</p>}
+                      {order.paymentStatus && <p className="mt-2 text-xs text-amber-700">Unpaid · confirm by phone</p>}
                     </td>
                     <td className="p-4 text-foreground/70">
                       {order.date ||

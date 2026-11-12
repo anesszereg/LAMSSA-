@@ -44,7 +44,7 @@ export default function AdminBookingsPage() {
     <div className="space-y-6">
       <AdminPageHeader
         title="Bookings"
-        subtitle="Manage showroom visits and consultations"
+        subtitle="Manage customer support and room advice calls"
       />
 
       <AdminCard className="overflow-hidden p-0">

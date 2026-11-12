@@ -5,18 +5,21 @@ import Link from "next/link";
 import { Minus, Plus, Trash2, ShoppingBag } from "lucide-react";
 import { useUIStore } from "@/stores/ui";
 import { useCartStore } from "@/stores/cart";
-import { products } from "@/lib/data";
+import { useData } from "@/lib/useData";
 import { formatPrice } from "@/lib/utils";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetFooter } from "@/components/ui/sheet";
 
 export function CartDrawer() {
   const { cartOpen, setCartOpen } = useUIStore();
   const { items, updateQuantity, removeItem } = useCartStore();
+  const { products, collections } = useData();
 
   const cartProducts = items
     .map((item) => {
+      const room = collections.find((room) => `room:${room.slug}` === item.productId);
+      if (room) return { id: item.productId, name: room.name, price: room.estimatedPrice, currency: room.currency, thumbnail: room.heroImage, category: "Complete room", slug: room.slug, quantity: item.quantity, href: `/collections/${room.slug}` };
       const product = products.find((p) => p.id === item.productId);
-      return product ? { ...product, quantity: item.quantity } : null;
+      return product ? { ...product, quantity: item.quantity, href: `/products/${product.slug}` } : null;
     })
     .filter(Boolean);
 
@@ -42,7 +45,7 @@ export function CartDrawer() {
             </div>
             <p className="text-foreground/60">Your cart is empty.</p>
             <Link
-              href="/products"
+              href="/collections"
               onClick={() => setCartOpen(false)}
               className="inline-flex h-8 items-center justify-center rounded-lg border border-border bg-background px-4 text-sm font-medium transition-colors hover:bg-muted"
             >
@@ -71,7 +74,7 @@ export function CartDrawer() {
                             {product.category}
                           </p>
                           <Link
-                            href={`/products/${product.slug}`}
+                            href={product.href}
                             onClick={() => setCartOpen(false)}
                             className="font-serif text-base font-medium hover:underline"
                           >
@@ -129,14 +132,14 @@ export function CartDrawer() {
                   </span>
                 </div>
                 <Link
-                  href="/checkout"
+                  href="/cart"
                   onClick={() => setCartOpen(false)}
                   className="inline-flex h-14 w-full items-center justify-center rounded-full bg-[#1A1816] text-sm font-medium uppercase tracking-wider text-[#FAFAF8] transition-colors hover:bg-[#2C2A26]"
                 >
-                  Proceed to Checkout
+                  Review cart & checkout
                 </Link>
                 <p className="text-center text-xs text-foreground/50">
-                  Shipping & taxes calculated at checkout.
+                  No payment now. Delivery fees confirmed by phone.
                 </p>
               </div>
             </SheetFooter>

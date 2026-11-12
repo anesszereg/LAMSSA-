@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { z } from "zod";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth-options";
+import { listRoomOrders, updateRoomOrderStatus } from "@/lib/local-room-orders";
 
 const dbConfigured = !!process.env.DATABASE_URL;
 
@@ -8,27 +11,24 @@ const orderStatusSchema = z.object({
   status: z.enum(["pending", "processing", "shipped", "delivered", "cancelled"]),
 });
 
-const mockOrders = [
-  { id: "ORD-7A3X", customer: "Sophia Laurent", email: "sophia@example.com", total: 12400, status: "delivered", date: "2026-03-14" },
-  { id: "ORD-9B2M", customer: "Lucas Moreau", email: "lucas@example.com", total: 28900, status: "processing", date: "2026-04-02" },
-];
-
 export async function GET() {
+  const session = await getServerSession(authOptions);
+  if (session?.user?.role !== "admin") return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  const localOrders = await listRoomOrders();
   if (!dbConfigured) {
-    return NextResponse.json({ orders: mockOrders });
+    return NextResponse.json({ orders: localOrders }, { headers: { "Cache-Control": "no-store" } });
   }
 
   const orders = await prisma.order.findMany({
     include: { items: { include: { product: true } } },
     orderBy: { createdAt: "desc" },
   });
-  return NextResponse.json({ orders });
+  return NextResponse.json({ orders: [...localOrders, ...orders] }, { headers: { "Cache-Control": "no-store" } });
 }
 
 export async function PATCH(req: NextRequest) {
-  if (!dbConfigured) {
-    return NextResponse.json({ success: true });
-  }
+  const session = await getServerSession(authOptions);
+  if (session?.user?.role !== "admin") return NextResponse.json({ error: "Forbidden" }, { status: 403 });
 
   const body = await req.json();
   const parsed = orderStatusSchema.safeParse(body);
@@ -42,6 +42,11 @@ export async function PATCH(req: NextRequest) {
     return NextResponse.json({ error: "id is required" }, { status: 400 });
   }
 
+  if (id.startsWith("ROOM-")) {
+    const updated = await updateRoomOrderStatus(id, parsed.data.status);
+    return NextResponse.json(updated ? { success: true } : { error: "Order not found" }, { status: updated ? 200 : 404 });
+  }
+  if (!dbConfigured) return NextResponse.json({ error: "Order not found" }, { status: 404 });
   await prisma.order.update({
     where: { id },
     data: { status },
