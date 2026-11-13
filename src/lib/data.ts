@@ -46,6 +46,22 @@ const room3Images = [
   "/room-3/DSC07399.jpg",
 ];
 
+const room4Images = [
+  "/room-4/DSC07438.jpg",
+  "/room-4/DSC07448.jpg",
+  "/room-4/DSC07455.jpg",
+  "/room-4/DSC07456.jpg",
+  "/room-4/DSC07460.jpg",
+  "/room-4/DSC07464.jpg",
+  "/room-4/DSC07466.jpg",
+  "/room-4/DSC07467.jpg",
+  "/room-4/DSC07474.jpg",
+  "/room-4/DSC07476.jpg",
+  "/room-4/DSC07478.jpg",
+  "/room-4/DSC07482.jpg",
+  "/room-4/DSC07484.jpg",
+];
+
 export const collections: Collection[] = [
   {
     id: "c1",
@@ -124,6 +140,33 @@ export const collections: Collection[] = [
     ],
     dimensions: { width: 6.0, height: 3.0, depth: 5.5, unit: "m" },
     estimatedPrice: 156000,
+    currency: "DZD",
+    featured: true,
+    products: [],
+  },
+  {
+    id: "c4",
+    slug: "noor-suite",
+    name: "Noor Suite",
+    tagline: "Soft light, sculptural forms and the quiet drama of warm oak.",
+    roomType: "Master Bedroom",
+    heroImage: room4Images[0],
+    gallery: room4Images,
+    tourUrl: "https://mls.kuu.la/share/L8xy8?fs=1&vr=1&zoom=1&thumbs=1&inst=fr",
+    videoUrl: "/videos/room4-web.mp4",
+    story:
+      "Noor — light in Arabic — is a bedroom built around reflection and glow. Vertical oak panels rise like a woven screen, pendant globes hover at the bedside, and a single sculpted mirror doubles the room in soft light.",
+    designerNotes:
+      "We paired warm oak cladding with pale leather and linen, letting the sculptural mirror and globe pendants carry the composition. The palette stays hushed so the light does the decorating.",
+    materials: ["Warm Oak", "Full-grain Leather", "Linen", "Opal Glass", "Travertine"],
+    colorPalette: [
+      { name: "Porcelain", hex: "#F4F1EC" },
+      { name: "Sand", hex: "#E8E0D5" },
+      { name: "Oak", hex: "#B08A5E" },
+      { name: "Graphite", hex: "#2C2A26" },
+    ],
+    dimensions: { width: 5.8, height: 3.2, depth: 5.0, unit: "m" },
+    estimatedPrice: 142000,
     currency: "DZD",
     featured: true,
     products: [],

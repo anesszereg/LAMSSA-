@@ -46,6 +46,22 @@ const room3Images = [
   "/room-3/DSC07399.jpg",
 ];
 
+const room4Images = [
+  "/room-4/DSC07438.jpg",
+  "/room-4/DSC07448.jpg",
+  "/room-4/DSC07455.jpg",
+  "/room-4/DSC07456.jpg",
+  "/room-4/DSC07460.jpg",
+  "/room-4/DSC07464.jpg",
+  "/room-4/DSC07466.jpg",
+  "/room-4/DSC07467.jpg",
+  "/room-4/DSC07474.jpg",
+  "/room-4/DSC07476.jpg",
+  "/room-4/DSC07478.jpg",
+  "/room-4/DSC07482.jpg",
+  "/room-4/DSC07484.jpg",
+];
+
 export const collections: Collection[] = [
   {
     id: "c1",
@@ -124,6 +140,33 @@ export const collections: Collection[] = [
     ],
     dimensions: { width: 6.0, height: 3.0, depth: 5.5, unit: "m" },
     estimatedPrice: 156000,
+    currency: "DZD",
+    featured: true,
+    products: [],
+  },
+  {
+    id: "c4",
+    slug: "noor-suite",
+    name: "جناح نور",
+    tagline: "ضوء ناعم وأشكال منحوتة وهدوء دافئ من خشب البلوط.",
+    roomType: "غرفة نوم رئيسية",
+    heroImage: room4Images[0],
+    gallery: room4Images,
+    tourUrl: "https://mls.kuu.la/share/L8xy8?fs=1&vr=1&zoom=1&thumbs=1&inst=fr",
+    videoUrl: "/videos/room4-web.mp4",
+    story:
+      "نور — ضوء — هي غرفة نوم مبنية حول الانعكاس والتوهّج. ترتفع ألواح البلوط العمودية كستارة منسوجة، وتتدلّى كرات الإضاءة بجانب السرير، بينما يضاعف مرآة منحوتة واحدة الغرفة في ضوء ناعم.",
+    designerNotes:
+      "قارنّا كسوة البلوط الدافئة بالجلد الفاتح والكتّان، تاركين المرآة المنحوتة وكرات الإضاءة تحمل التكوين. تبقى الألوان هادئة ليتكفّل الضوء بالزينة.",
+    materials: ["بلوط دافئ", "جلد كامل الحبيبات", "كتّان", "زجاج أوبال", "ترافرتين"],
+    colorPalette: [
+      { name: "بورسلين", hex: "#F4F1EC" },
+      { name: "رملي", hex: "#E8E0D5" },
+      { name: "بلوطي", hex: "#B08A5E" },
+      { name: "جرافيت", hex: "#2C2A26" },
+    ],
+    dimensions: { width: 5.8, height: 3.2, depth: 5.0, unit: "m" },
+    estimatedPrice: 142000,
     currency: "DZD",
     featured: true,
     products: [],
